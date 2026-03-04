@@ -1,6 +1,50 @@
-<div class="container mt-4">
-    <h2 class="section-title">Property Binding</h2>
-    <img [src]="imageUrl" width="100" alt="Angular Logo" />
-    <br/><br/>
-    <button class="btn btn-secondary" [disabled]="isDisabled">Disabled Button</button>
+<div class="container py-4">
+  <div class="page-header mb-4">
+    <span class="badge bg-success mb-2">Data Binding</span>
+    <h2 class="fw-bold text-white">Property Binding</h2>
+    <p class="text-secondary">One-way binding from component to view. Syntax: <code>[property]="expression"</code></p>
   </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-success me-2">A</span> Disabled Property
+    </div>
+    <div class="card-body">
+      <p class="text-secondary small mb-2">Bind to the <code>disabled</code> DOM property</p>
+      <button type="button" class="btn btn-primary" [disabled]="isButtonDisabled" (click)="onButtonClick()">
+        Click Me (disabled until clicked)
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-success me-2">B</span> Image Source &amp; Alt
+    </div>
+    <div class="card-body">
+      <p class="text-secondary small mb-2">Bind to <code>img.src</code>, <code>img.alt</code>, <code>img.width</code></p>
+      <img [src]="imageSource" [alt]="imageAlt" [width]="imageWidth" class="rounded" />
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-success me-2">C</span> Href Binding
+    </div>
+    <div class="card-body">
+      <p class="text-secondary small mb-2">Bind to <code>href</code> property</p>
+      <a [href]="linkUrl" target="_blank" class="me-3">{{ linkUrl }}</a>
+      <a [href]="linkUrl" class="btn btn-outline-light btn-sm" target="_blank">Visit UB Site</a>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-success me-2">D</span> Placeholder Binding
+    </div>
+    <div class="card-body">
+      <p class="text-secondary small mb-2">Bind to <code>placeholder</code> property of an input</p>
+      <input type="text" class="form-control" [placeholder]="inputPlaceholder" />
+    </div>
+  </div>
+</div>

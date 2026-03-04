@@ -1,95 +1,160 @@
-<div class="container py-5">
-  <h2 class="fw-bold mb-4">Interpolation Binding</h2>
+<div class="container py-4">
+  <div class="page-header mb-4">
+    <span class="badge bg-info mb-2">Data Binding</span>
+    <h2 class="fw-bold text-white">String Interpolation</h2>
+    <p class="text-secondary">A one-way data binding technique that displays dynamic data from your TypeScript component using double curly braces <code>{{ curly }}</code>.</p>
+  </div>
 
-  <div class="card border-0 shadow-sm mb-3">
-    <div class="card-body">
-      <h6 class="text-muted">Title</h6>
-      <code>{{ 'title' }}</code>
+  <!-- Description -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header">Basic Characteristics</div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">✅ Component Property: <code>&#123;&#123; common.username &#125;&#125;</code></li>
+            <li class="mb-2">✅ Arithmetic: <code>&#123;&#123; 1 + 1 &#125;&#125;</code></li>
+            <li class="mb-2">✅ Methods: <code>&#123;&#123; getWelcomeMessage() &#125;&#125;</code></li>
+            <li class="mb-2">✅ String Methods: <code>&#123;&#123; title.toUpperCase() &#125;&#125;</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header">Rules &amp; Constraints</div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">✅ Must return a value</li>
+            <li class="mb-2">✅ Can call pure methods and use pipes</li>
+            <li class="mb-2">❌ Cannot use assignments (=) or (++)</li>
+            <li class="mb-2">❌ Cannot access window or document</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card border-0 shadow-sm mb-3">
+  <!-- Examples -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-info me-2">A</span> Basic String Interpolation
+    </div>
     <div class="card-body">
-      <h6 class="text-muted">Student Name</h6>
-      <code>{{ 'studentName' }}</code>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">Title</p>
+          <p class="text-white">{{ title }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">Student &amp; Course</p>
+          <p class="text-white">{{ studentName }} — {{ courseCode }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">Arithmetic (currentYear + 1)</p>
+          <p class="text-white">{{ currentYear + 1 }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">Method Call</p>
+          <p class="text-white">{{ getWelcomeMessage() }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">Ternary (isActive)</p>
+          <p class="text-white">{{ isActive ? 'ACTIVE' : 'INACTIVE' }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">Curly Syntax</p>
+          <code>{{ curly }}</code>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card border-0 shadow-sm mb-3">
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-info me-2">B</span> Interpolating Objects
+    </div>
     <div class="card-body">
-      <h6 class="text-muted">Course Code</h6>
-      <code>{{ 'courseCode' }}</code>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">User Name</p>
+          <p class="text-white">{{ user.name }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">User Position</p>
+          <p class="text-white">{{ user.position }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">User Department</p>
+          <p class="text-white">{{ user.department }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">User Role (optional chaining)</p>
+          <p class="text-white">{{ user.details?.role }}</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card border-0 shadow-sm mb-3">
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-info me-2">C</span> Iterating with Interpolation
+    </div>
     <div class="card-body">
-      <h6 class="text-muted">Current Year</h6>
-      <code>{{ 'currentYear' }}</code>
+      <ul class="list-group list-group-flush">
+        @for (skill of skills; track skill) {
+          <li class="list-group-item bg-transparent text-white border-secondary">{{ skill }}</li>
+        }
+      </ul>
     </div>
   </div>
 
-  <div class="card border-0 shadow-sm mb-3">
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-info me-2">D</span> Safe Navigation Operator (?.)
+    </div>
     <div class="card-body">
-      <h6 class="text-muted">Roles (Array)</h6>
-      <code>{{ 'roles[0]' }} | {{ 'roles[1]' }}</code>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">Dot Notation</p>
+          <p class="text-white">{{ dotnot.username }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="text-secondary small mb-1">Optional Chaining</p>
+          <p class="text-white">{{ dotnot2?.profile?.email }}</p>
+        </div>
+      </div>
+      <select class="form-select mt-3" aria-label="Select role">
+        <option selected>Select a role</option>
+        @for (role of roles; track role) {
+          <option [value]="role">{{ role }}</option>
+        }
+      </select>
     </div>
   </div>
 
-  <div class="card border-0 shadow-sm mb-3">
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-info me-2">E</span> Arrays of Objects
+    </div>
     <div class="card-body">
-      <h6 class="text-muted">Text</h6>
-      <code>{{ 'text' }}</code>
+      <select [(ngModel)]="selectedCountryId" class="form-select mb-3">
+        <option value="" disabled>Select a country</option>
+        @for (c of countries; track c.id) {
+          <option [value]="c.id">{{ c.name }}</option>
+        }
+      </select>
+      <p class="text-secondary small mb-1">Selected ID</p>
+      <p class="text-white">{{ selectedCountryId }}</p>
     </div>
   </div>
 
-  <div class="card border-0 shadow-sm mb-3">
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-info me-2">F</span> JSON Pipe (Debugging)
+    </div>
     <div class="card-body">
-      <h6 class="text-muted">Curly Braces Syntax</h6>
-      <code>&#123;&#123; curly &#125;&#125;</code>
+      <pre>{{ jpipe | json }}</pre>
     </div>
   </div>
-
-  <div class="card border-0 shadow-sm mb-3">
-    <div class="card-body">
-      <h6 class="text-muted">Common (Object Property)</h6>
-      <code>{{ 'common.username' }}</code>
-    </div>
-  </div>
-
-  <div class="card border-0 shadow-sm mb-3">
-    <div class="card-body">
-      <h6 class="text-muted">Method Call</h6>
-      <code>{{ 'getStatus()' }}</code>
-    </div>
-  </div>
-
-  <div class="card border-0 shadow-sm mb-3">
-    <div class="card-body">
-      <h6 class="text-muted">Dot Notation</h6>
-      <code>{{ 'dotnot.username' }}</code>
-    </div>
-  </div>
-
-  <div class="card border-0 shadow-sm mb-3">
-    <div class="card-body">
-      <h6 class="text-muted">Dot Notation (Optional Chaining)</h6>
-      <code>{{ 'dotnot2?.profile?.email' }}</code>
-    </div>
-  </div>
-
-  <div class="card border-0 shadow-sm mb-3">
-    <div class="card-body">
-      <h6 class="text-muted">Pipe</h6>
-      <code>{{ 'jpipe | date' }}</code>
-    </div>
-  </div>
-
-  <div class="card border-0 shadow-sm mb-3">
-    <div class="card-body">
-      <h6 class="text-muted">isActive (Ternary)</h6>
-      <code>{{ 'isActive ? "Active" : "Inactive"' }}</code>
-    </div>
-  </div>
-
 </div>

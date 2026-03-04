@@ -1,5 +1,118 @@
-<div class="container mt-4">
-    <h2 class="section-title">Event Binding</h2>
-    <button class="btn btn-primary" (click)="onClick()">Click Me</button>
-    <p class="mt-2">{{ message }}</p>
+<div class="container py-4">
+  <div class="page-header mb-4">
+    <span class="badge bg-primary mb-2">Data Binding</span>
+    <h2 class="fw-bold text-white">Event Binding</h2>
+    <p class="text-secondary">One-way binding from view to component. Syntax: <code>(event)="handler"</code></p>
   </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-primary me-2">A</span> Click Event
+    </div>
+    <div class="card-body">
+      <p class="text-secondary small mb-2">(click) fires on mouse click or touch</p>
+      <button type="button" class="btn btn-warning me-2" [disabled]="isButtonDisabled" (click)="onButtonClick()">{{ buttonLabel }}</button>
+      <button type="button" class="btn btn-info" (click)="onButtonClick()">Clicked {{ clickCount }} time(s)</button>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-primary me-2">B</span> Keyboard Event
+    </div>
+    <div class="card-body">
+      <p class="text-secondary small mb-2">$event is the native KeyboardEvent</p>
+      <input type="text" class="form-control mb-2" style="max-width:400px" placeholder="Press any key..." (keyup)="onKeyPress($event)" />
+      <p class="text-white mb-0">Last key pressed: <code>{{ lastKeyPressed }}</code></p>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-primary me-2">C</span> Mouse Events
+    </div>
+    <div class="card-body">
+      <p class="text-secondary small mb-2">Tracking mouse position with (mousemove)</p>
+      <div class="p-4 rounded text-center"
+           style="background:#0f3460; cursor:crosshair; min-height:100px"
+           (mousemove)="onMouseMove($event)"
+           (mouseenter)="onMouseEnter()"
+           (mouseleave)="onMouseLeave()">
+        Move mouse here! &nbsp; X: {{ mousePosition.x }} | Y: {{ mousePosition.y }}
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-primary me-2">D</span> Color &amp; Input Events
+    </div>
+    <div class="card-body row g-3">
+      <div class="col-md-6">
+        <p class="text-secondary small mb-2">Color picker — (change) event</p>
+        <input type="color" [value]="selectedColor" (change)="onColorChange($event)" />
+        <p class="mt-2 text-white">Selected: <span [style.color]="selectedColor">{{ selectedColor }}</span></p>
+      </div>
+      <div class="col-md-6">
+        <p class="text-secondary small mb-2">(input) fires on every keystroke</p>
+        <input type="text" class="form-control mb-2" placeholder="Type here..." (input)="onInputChange($event)" />
+        <p class="text-white mb-0">You typed: <code>{{ typedInput }}</code></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-primary me-2">E</span> Select &amp; Form Events
+    </div>
+    <div class="card-body">
+      <p class="text-secondary small mb-2">(change) fires when selection changes</p>
+      <select [(ngModel)]="selectedFramework" (change)="onSelectionChange(selectedFramework)" class="form-select mb-3" style="max-width:300px">
+        <option value="" disabled>Select a framework</option>
+        @for (framework of frameworks; track framework.name) {
+          <option [value]="framework.name">{{ framework.value }}</option>
+        }
+      </select>
+      <p class="text-white mb-3">Selected: <code>{{ selectedFramework }}</code></p>
+
+      <p class="text-secondary small mb-2">Form submit event</p>
+      <form (submit)="onFormSubmit($event)" class="d-flex gap-2" style="max-width:400px">
+        <input type="text" [value]="inputValue" (input)="inputValue = $any($event).target.value" class="form-control" placeholder="Enter something..." />
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      <p class="text-white mt-2 mb-0">{{ formMessage }}</p>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <span class="badge bg-primary me-2">F</span> Double Click &amp; Right Click
+    </div>
+    <div class="card-body row g-3">
+      <div class="col-md-6">
+        <p class="text-secondary small mb-2">Double-click event</p>
+        <div (dblclick)="onDoubleClick()" class="p-3 rounded text-center text-white" style="background:#0f3460; cursor:pointer">
+          Double-click me!
+        </div>
+      </div>
+      <div class="col-md-6">
+        <p class="text-secondary small mb-2">Right-click (contextmenu) event</p>
+        <div (contextmenu)="onRightClick($event)" class="p-3 rounded text-center text-white" style="background:#3d0f0f; cursor:pointer">
+          Right-click me!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">Event Log (last 5)</div>
+    <div class="card-body">
+      @for (entry of eventLog; track entry) {
+        <p class="mb-1 text-white small">▸ {{ entry }}</p>
+      }
+      @if (eventLog.length === 0) {
+        <p class="text-secondary small mb-0">No events yet. Interact above!</p>
+      }
+    </div>
+  </div>
+</div>
