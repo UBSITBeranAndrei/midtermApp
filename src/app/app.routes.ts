@@ -7,6 +7,7 @@ import { TwoWayComponent } from './databinding/two-way/two-way';
 import { AttributeComponent } from './databinding/attribute/attribute';
 import { ClassComponent } from './databinding/class/class';
 import { StyleComponent } from './databinding/style/style';
+import { ProductsComponent } from './components/products/products';  // 👈 add this
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -18,4 +19,5 @@ export const routes: Routes = [
   { path: 'attribute', component: AttributeComponent },
   { path: 'class', component: ClassComponent },
   { path: 'style', component: StyleComponent },
+  { path: 'products', component: ProductsComponent },  // 👈 add this
 ];
